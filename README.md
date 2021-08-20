@@ -3,10 +3,10 @@ Exercice en React Native réalisé afin de découvrir et de comprendre le foncti
 
 ## Installation du projet
 
-npm install -g expo-cli
-expo init GroceryShoppingApplication
-cd GroceryShoppingApplication
-npm start
+`npm install -g expo-cli`
+`expo init GroceryShoppingApplication`
+`cd GroceryShoppingApplication`
+`npm start`
 
 ## Installation de React Redux
 
