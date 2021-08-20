@@ -13,13 +13,14 @@ Exercice en React Native réalisé afin de découvrir et de comprendre le foncti
 
 ## Installation de React Redux
 
-npm install react-redux
+`npm install react-redux`
 
 ## Installation de React Navigation
 
-npm install @react-navigation/native @react-navigation/stack
+`npm install @react-navigation/native @react-navigation/stack`
 
 ## Autres dépendances
 
-expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
-npm install react-native-dropdown-picker
+`expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view`
+
+`npm install react-native-dropdown-picker`
