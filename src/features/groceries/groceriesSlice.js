@@ -8,18 +8,18 @@ function newGroceryId(groceries){
     return groceries.length + 1;
 }
 
-export default function groceriesReducer(state = initialState, action) {
+export function groceriesReducer(state = initialState, action) {
     switch (action.type) {
       case 'groceries/Adding': {
         return [
           ...state,
           {
             id: newGroceryId(state),
-            name: action.payload,
-            quantity: action.payload,
+            name: action.name,
+            quantity: action.quantity,
             bought: false,
-            category: action.payload,
-            details: action.payload
+            category: action.category,
+            details: action.details
           }
         ]
       }

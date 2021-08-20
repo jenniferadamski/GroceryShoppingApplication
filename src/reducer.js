@@ -5,6 +5,6 @@ import { categoriesReducer } from './features/categories/categoriesSlice';
 const rootReducer = combineReducers({
   groceries: groceriesReducer,
   categories: categoriesReducer
-});
+})
 
 export default rootReducer;
