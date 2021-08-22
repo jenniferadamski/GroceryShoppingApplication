@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useSelector } from 'react-redux';
 
 function AddItemScreen({ navigation }){
     const [name, setName] = useState('');
@@ -24,6 +24,7 @@ function AddItemScreen({ navigation }){
                 quantity: quantity,
                 details: details
             });
+            navigation.navigate('Home');
         } else {
             alert("Tous les champs sauf 'Détails' sont obligatoires.");
         }
