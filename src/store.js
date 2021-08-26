@@ -1,6 +1,12 @@
-import { createStore } from 'redux';
-import rootReducer from './reducer';
+import { configureStore } from '@reduxjs/toolkit';
+import { groceriesReducer } from './features/groceries/groceriesSlice';
+import { categoriesReducer } from './features/categories/categoriesSlice';
 
-const store = createStore(rootReducer);
+const store = configureStore({
+    reducer: {
+        groceries: groceriesReducer,
+        categories: categoriesReducer
+    }
+});
 
 export default store;

@@ -15,6 +15,10 @@ Exercice en React Native réalisé afin de découvrir et de comprendre le foncti
 
 `npm install react-redux`
 
+## Installation de Redux Toolkit
+
+`npm install @reduxjs/toolkit`
+
 ## Installation de React Navigation
 
 `npm install @react-navigation/native @react-navigation/stack`

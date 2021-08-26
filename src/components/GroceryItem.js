@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
-import { CheckBox, StyleSheet, Text, View } from 'react-native';
+import { CheckBox, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 function GroceryItem(props){
     const [isBought, setStatus] = useState(props.status);
+    const id = props.id;
+    const navigation = useNavigation();
 
     return(
-        <View style={styles.groceryItemContainer}>
+        <TouchableOpacity 
+            style={styles.groceryItemContainer} 
+            onPress={() => 
+                navigation.navigate('Edit', { 
+                    itemId: id, 
+                    name: props.name,
+                    quantity: props.quantity,
+                    category: props.category,
+                    details: props.details
+                })
+            }
+        >
             <View>
+                <Text>ID : {id}</Text>
                 <Text style={styles.itemName}>{props.name} x{props.quantity}</Text>
                 <Text>{props.category}</Text>
                 {props.details ? <Text>Détails : {props.details}</Text> : <Text style={styles.hidden}></Text>}
@@ -15,7 +30,7 @@ function GroceryItem(props){
                 value={isBought}
                 onValueChange={setStatus}
             />
-        </View>
+        </TouchableOpacity>
     )
 }
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { Button, KeyboardAvoidingView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, KeyboardAvoidingView, StyleSheet, Text, View } from 'react-native';
+import Input from './Input';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 function AddItemScreen({ navigation }){
@@ -12,6 +12,10 @@ function AddItemScreen({ navigation }){
     const [details, setDetails] = useState('');
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
+
+    const handleNameChange = (name) => setName(name);
+    const handleQuantityChange = (quantity) => setQuantity(quantity);
+    const handleDetailsChange = (details) => setDetails(details);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -32,10 +36,7 @@ function AddItemScreen({ navigation }){
 
     return(
         <KeyboardAvoidingView style={styles.addItemContainer}>
-            <View style={styles.elementView}>
-                <Text style={styles.elementLabel}>Nom</Text>
-                <TextInput style={styles.textInput} onChangeText={(name) => setName(name)} value={name} />
-            </View>
+            <Input title='Nom' data={name} handleChange={() => handleNameChange} />
 
             <View style={styles.elementView}>
                 <Text style={styles.elementLabel}>Catégorie</Text>
@@ -50,25 +51,8 @@ function AddItemScreen({ navigation }){
                 />
             </View>
 
-            <View style={styles.elementView}>
-                <Text style={styles.elementLabel}>Quantité</Text>
-                <TextInput 
-                    keyboardType="numeric" 
-                    style={styles.textInput} 
-                    onChangeText={(quantity) => setQuantity(quantity)} 
-                    value={quantity}
-                />
-            </View>
-
-            <View style={styles.elementView}>
-                <Text style={styles.elementLabel}>Informations complémentaires</Text>
-                <TextInput 
-                    style={styles.textInput}
-                    onChangeText={(details) => setDetails(details)}  
-                    value={details}
-                />
-            </View>
-
+            <Input title='Quantité' numeric data={quantity} handleChange={() => handleQuantityChange} />
+            <Input title='Informations complémentaires' data={details} handleChange={() => handleDetailsChange} />
             <Button title="Ajouter l'élément" onPress={handleSubmit} />
         </KeyboardAvoidingView>
     )

@@ -25,4 +25,3 @@ export function categoriesReducer(state = initialState, action) {
         return state;
     }
   }
-  

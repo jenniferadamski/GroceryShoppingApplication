@@ -1,22 +1,21 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import GroceryItem from './GroceryItem';
-import { useSelector } from 'react-redux';
 
-function GroceriesList() {
-    const groceries = useSelector((state) => state.groceries);
-
+function GroceriesList(props) {
     return(
         <ScrollView style={styles.listView}>
-            {groceries.map((grocery) => {
+            {props.groceries.map((grocery, key) => {
                 return (
                     <GroceryItem 
-                        key={grocery.id} 
+                        key={key}
+                        id={grocery.id}
                         name={grocery.name} 
                         quantity={grocery.quantity}
                         status={grocery.bought}
                         category={grocery.category}
                         details={grocery.details}
+                        navigation={props.navigation}
                     />
                 );
             })}
