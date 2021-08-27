@@ -16,15 +16,16 @@ function AddButton({navigation}){
 
 const styles = StyleSheet.create({
     buttonBackground: {
-        alignItems: 'center',
         backgroundColor: '#4169e1',
         borderRadius: 50,
         height: 50,
-        justifyContent: 'center',
+        textAlign: 'center',
         width: 50,
     },
     buttonLabel: {
+        alignSelf: 'center',
         color: '#fff',
+        fontSize: 35,
     },
     buttonPosition: {
         alignItems: 'flex-end',
