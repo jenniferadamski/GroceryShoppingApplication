@@ -5,8 +5,7 @@ import store from './src/store';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from './src/components/HomeScreen';
-import AddItemScreen from './src/components/AddItemScreen';
-import EditScreen from './src/components/EditScreen';
+import ProductScreen from './src/components/ProductScreen';
 
 const Stack = createStackNavigator();
 
@@ -16,8 +15,7 @@ function App() {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Ma Liste de courses' }} />
-            <Stack.Screen name="AddItem" component={AddItemScreen} options={{ title: 'Ajouter un produit'}} />
-            <Stack.Screen name="Edit" component={EditScreen} options={{ title: 'Modifier / Supprimer un produit' }} />
+            <Stack.Screen name="Product" component={ProductScreen} options={({ route }) => ({ title: route.params.name })} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

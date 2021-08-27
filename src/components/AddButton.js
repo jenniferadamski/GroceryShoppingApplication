@@ -4,7 +4,10 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 function AddButton({navigation}){
     return(
         <View style={styles.buttonPosition}>
-            <TouchableOpacity style={styles.buttonBackground} onPress={() => navigation.navigate('AddItem')}>
+            <TouchableOpacity 
+                style={styles.buttonBackground} 
+                onPress={() => navigation.navigate('Product', { name: 'Ajouter un produit'})}
+            >
                 <Text style={styles.buttonLabel}>+</Text>
             </TouchableOpacity>
         </View>

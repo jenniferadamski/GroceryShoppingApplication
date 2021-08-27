@@ -11,9 +11,10 @@ function GroceryItem(props){
         <TouchableOpacity 
             style={styles.groceryItemContainer} 
             onPress={() => 
-                navigation.navigate('Edit', { 
+                navigation.navigate('Product', {
+                    name: 'Modifier / Supprimer un produit',
                     itemId: id, 
-                    name: props.name,
+                    productName: props.name,
                     quantity: props.quantity,
                     category: props.category,
                     details: props.details

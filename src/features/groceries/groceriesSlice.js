@@ -52,7 +52,3 @@ const selectAllGroceries = (state) => state.groceries.allGroceries;
 export const selectGroceries = createSelector(selectAllGroceries, allGroceries =>
   Object.values(allGroceries)
 );
-
-export const selectGroceryById = (state, groceryId) => {
-  return selectAllGroceries(state)[groceryId]
-};
