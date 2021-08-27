@@ -7,14 +7,12 @@ import DropDownPicker from 'react-native-dropdown-picker';
 function ProductScreen({route, navigation}){
     const { itemId, name, productName, quantity, category, details } = route.params;
     const id = JSON.stringify(itemId);
-    const amount = JSON.stringify(quantity);
-    
-    const [newName, setNewName] = productName ? useState(productName) : useState('');
-    const [newQuantity, setNewQuantity] = quantity ? useState(amount) : useState('');
-    const [newDetails, setNewDetails] = details ? useState(details) : useState('');
-
+    const [newName, setNewName] = useState(productName);
+    const amount = isNaN(quantity) ? JSON.stringify(quantity) : quantity;
+    const [newQuantity, setNewQuantity] = useState(amount);
+    const [newDetails, setNewDetails] = useState(details);
     const [categories, setItems] = useState(useSelector((state) => state.categories));
-    const [newCategory, setNewCategory] = category ? useState(category) : useState('');
+    const [newCategory, setNewCategory] = useState(category);
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
 
@@ -37,6 +35,19 @@ function ProductScreen({route, navigation}){
         } else {
             alert("Tous les champs sauf 'Détails' sont obligatoires.");
         }
+    }
+
+    function handleEdit(e){
+        e.preventDefault();
+        dispatch({
+            type: 'groceries/Editing',
+            id: id,
+            name: newName,
+            quantity: newQuantity,
+            category: newCategory,
+            details: newDetails
+        });
+        navigation.navigate('Home');
     }
 
     function handleDelete(e) {
@@ -64,13 +75,13 @@ function ProductScreen({route, navigation}){
                     setItems={setItems}
                  />
             </View>
-
+            
             <Input title='Quantité' numeric data={newQuantity} handleChange={() => handleQuantityChange} />
             <Input title='Informations complémentaires' data={newDetails} handleChange={() => handleDetailsChange} />
             { name === 'Ajouter un produit' ? 
                 <Button title="Ajouter l'élément" onPress={handleSubmit} /> :
                 <View style={styles.buttonsSection}>
-                    <Button title="Modifier l'élément" />
+                    <Button title="Modifier l'élément" onPress={handleEdit} />
                     <Button title="Supprimer l'élément" onPress={handleDelete} color='#ff0505' />
                 </View>
             }

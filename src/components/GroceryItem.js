@@ -4,7 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 
 function GroceryItem(props){
     const [isBought, setStatus] = useState(props.status);
-    const id = props.id;
     const navigation = useNavigation();
 
     return(
@@ -13,7 +12,7 @@ function GroceryItem(props){
             onPress={() => 
                 navigation.navigate('Product', {
                     name: 'Modifier / Supprimer un produit',
-                    itemId: id, 
+                    itemId: props.id, 
                     productName: props.name,
                     quantity: props.quantity,
                     category: props.category,
@@ -22,7 +21,6 @@ function GroceryItem(props){
             }
         >
             <View>
-                <Text>ID : {id}</Text>
                 <Text style={styles.itemName}>{props.name} x{props.quantity}</Text>
                 <Text>{props.category}</Text>
                 {props.details ? <Text>Détails : {props.details}</Text> : <Text style={styles.hidden}></Text>}

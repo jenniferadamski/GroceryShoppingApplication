@@ -1,11 +1,7 @@
 import { createSelector } from 'reselect';
 
 const initialState = {
-  allGroceries: {
-    1: { id: 1, name: 'Melon', quantity: 1, bought: false, category: 'Fruits et Légumes' },
-    2: { id: 2, name: 'Dentifrice', quantity: 1, bought: false, category: 'Hygiène' },
-    3: { id: 3, name: 'Poulet', quantity: 2, bought: false, category: 'Boucherie / Rôtisserie', details: 'Deux escalopes' },
-  },
+  allGroceries: {},
 };
 
 function newGroceryId(allKeys){
@@ -34,6 +30,24 @@ export function groceriesReducer(state = initialState, action) {
           }
         }
       }
+      case 'groceries/Editing': {
+        const groceryId = action.id;
+        const selectedGrocery = state.allGroceries[groceryId];
+
+        return {
+          ...state,
+          allGroceries: {
+            ...state.allGroceries,
+            [groceryId]: {
+              ...selectedGrocery,
+              name: action.name,
+              quantity: action.quantity,
+              category: action.category,
+              details: action.details
+            }
+          }
+        }
+      }
       case 'groceries/Deleting': {
         const newGroceries = { ...state.allGroceries };
         delete newGroceries[action.id];
@@ -48,7 +62,6 @@ export function groceriesReducer(state = initialState, action) {
 }
 
 const selectAllGroceries = (state) => state.groceries.allGroceries;
-
 export const selectGroceries = createSelector(selectAllGroceries, allGroceries =>
   Object.values(allGroceries)
 );
